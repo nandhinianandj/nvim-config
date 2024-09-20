@@ -399,16 +399,16 @@ endfunction
 """"""""""""""""""""""""""""""vim-auto-save settings""""""""""""""""""""""""""""""
 let g:auto_save = 1  " enable AutoSave on Vim startup
 " start  Nerdtree on <leader> n
-nnoremap <leader>n <Esc>:NERDTree <CR>
-nnoremap <leader>c <Esc>:NERDTreeToggle <CR>
-"nmap <F6> :NERDTreeToggle<CR>
+nnoremap <leader>n <Esc>:NvimTree <CR>
+nnoremap <leader>c <Esc>:NvimTreeToggle <CR>
+"nnoremap <leader>f <Esc>:NvimTreeCollapse <CR>
 let NERDTreeQuitOnOpen=0
 let NERDTreeIgnore=['\.pyc$', '\.ipynb$', '\~$'] "ignore files in NERDTree
 let NERDTreeSortOrder=['\.c$', '\.py$']
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 " Open nerdtree on the file you're editing
-nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+nnoremap <silent> <Leader>v :NvimTreeFindFile<CR>
 " Auto close nerd tree if it is the only remaining window
 "autocmd bufenter * if (winnr(â€œ$â€�) == 1 && exists(â€œb:NERDTreeTypeâ€�) && b:NERDTreeType == â€œprimaryâ€�) | q | endif
 "delete propagation of files from nerd tree to buffer.
