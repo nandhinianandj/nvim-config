@@ -171,6 +171,8 @@ keymap.set({ "x", "o" }, "iu", "<cmd>call text_obj#URL()<cr>", { desc = "URL tex
 -- Text objects for entire buffer
 keymap.set({ "x", "o" }, "iB", ":<C-U>call text_obj#Buffer()<cr>", { desc = "buffer text object" })
 
+-- Gitsigns blame
+keymap.set({","}, "b", "<cmd>Gitsigns blame_line<cr>", {desc="call gitsigns blame_line"})
 -- Do not move my cursor when joining lines.
 keymap.set("n", "J", function()
   vim.cmd([[
