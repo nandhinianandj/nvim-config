@@ -183,14 +183,14 @@ local plugin_specs = {
   --  end,
   --},
 
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "VeryLazy",
-    main = "ibl",
-    config = function()
-      require("config.indent-blankline")
-    end,
-  },
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   event = "VeryLazy",
+  --   main = "ibl",
+  --   config = function()
+  --     require("config.indent-blankline")
+  --   end,
+  -- },
   {
     "luukvbaal/statuscol.nvim",
     opts = {},
