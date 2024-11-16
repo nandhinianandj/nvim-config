@@ -128,12 +128,12 @@ local plugin_specs = {
       "nvim-telescope/telescope-symbols.nvim",
     },
   },
-  {
-    "MeanderingProgrammer/markdown.nvim",
-    main = "render-markdown",
-    opts = {},
-    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
-  },
+  --{
+  --  "MeanderingProgrammer/markdown.nvim",
+  --  main = "render-markdown",
+  --  opts = {},
+  --  dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+  --},
   -- A list of colorscheme plugin you may want to try. Find what suits you.
   { "navarasu/onedark.nvim", lazy = true },
   { "sainnhe/edge", lazy = true },
@@ -185,14 +185,14 @@ local plugin_specs = {
   --  end,
   --},
 
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "VeryLazy",
-    main = "ibl",
-    config = function()
-      require("config.indent-blankline")
-    end,
-  },
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   event = "VeryLazy",
+  --   main = "ibl",
+  --   config = function()
+  --     require("config.indent-blankline")
+  --   end,
+  -- },
   {
     "luukvbaal/statuscol.nvim",
     opts = {},
