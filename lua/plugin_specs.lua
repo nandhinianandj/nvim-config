@@ -21,6 +21,8 @@ local firenvim_not_active = function()
 end
 
 local plugin_specs = {
+  {"nvzone/volt"},
+  { "nvzone/timerly", cmd = "TimerlyToggle" },
   -- auto-completion engine
   {
     "hrsh7th/nvim-cmp",
