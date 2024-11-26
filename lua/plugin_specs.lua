@@ -21,6 +21,8 @@ local firenvim_not_active = function()
 end
 
 local plugin_specs = {
+  {"nvzone/volt"},
+  { "nvzone/timerly", cmd = "TimerlyToggle" },
   -- auto-completion engine
   {
     "hrsh7th/nvim-cmp",
@@ -126,12 +128,12 @@ local plugin_specs = {
       "nvim-telescope/telescope-symbols.nvim",
     },
   },
-  {
-    "MeanderingProgrammer/markdown.nvim",
-    main = "render-markdown",
-    opts = {},
-    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
-  },
+  --{
+  --  "MeanderingProgrammer/markdown.nvim",
+  --  main = "render-markdown",
+  --  opts = {},
+  --  dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+  --},
   -- A list of colorscheme plugin you may want to try. Find what suits you.
   { "navarasu/onedark.nvim", lazy = true },
   { "sainnhe/edge", lazy = true },
@@ -183,14 +185,14 @@ local plugin_specs = {
   --  end,
   --},
 
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "VeryLazy",
-    main = "ibl",
-    config = function()
-      require("config.indent-blankline")
-    end,
-  },
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   event = "VeryLazy",
+  --   main = "ibl",
+  --   config = function()
+  --     require("config.indent-blankline")
+  --   end,
+  -- },
   {
     "luukvbaal/statuscol.nvim",
     opts = {},
@@ -206,7 +208,7 @@ local plugin_specs = {
     init = function()
       vim.o.foldcolumn = "1" -- '0' is not bad
       vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-      vim.o.foldlevelstart = 99
+      vim.o.foldlevelstart = 1 --- on start fold everything except first level folds
       vim.o.foldenable = true
     end,
     config = function()
@@ -520,7 +522,87 @@ local plugin_specs = {
 
   -- show and trim trailing whitespaces
   { "jdhao/whitespace.nvim", event = "VeryLazy" },
+  -- ollama local AI model plugin
+  {
+  "nomnivore/ollama.nvim",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  },
 
+  -- All the user commands added by the plugin
+  cmd = { "Ollama", "OllamaModel", "OllamaServe", "OllamaServeStop" },
+
+  keys = {
+    -- Sample keybind for prompt menu. Note that the <c-u> is important for selections to work properly.
+    {
+      "<leader>oo",
+      ":<c-u>lua require('ollama').prompt()<cr>",
+      desc = "ollama prompt",
+      mode = { "n", "v" },
+    },
+
+    -- Sample keybind for direct prompting. Note that the <c-u> is important for selections to work properly.
+    {
+      "<leader>oG",
+      ":<c-u>lua require('ollama').prompt('Generate_Code')<cr>",
+      desc = "ollama Generate Code",
+      mode = { "n", "v" },
+    },
+  },
+
+  ---@type Ollama.Config
+  opts = {
+    -- your configuration overrides
+  }
+  },
+
+  -- cursor AI like plugin
+  -- {
+  -- "yetone/avante.nvim",
+  -- event = "VeryLazy",
+  -- lazy = false,
+  -- version = false, -- set this if you want to always pull the latest change
+  -- opts = {
+  --   -- add any opts here
+  -- },
+  -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+  -- build = "make",
+  -- -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+  -- dependencies = {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   "stevearc/dressing.nvim",
+  --   "nvim-lua/plenary.nvim",
+  --   "MunifTanjim/nui.nvim",
+  --   --- The below dependencies are optional,
+  --   "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+  --   "zbirenbaum/copilot.lua", -- for providers='copilot'
+  --   {
+  --     -- support for image pasting
+  --     "HakonHarnes/img-clip.nvim",
+  --     event = "VeryLazy",
+  --     opts = {
+  --       -- recommended settings
+  --       default = {
+  --         embed_image_as_base64 = false,
+  --         prompt_for_file_name = false,
+  --         drag_and_drop = {
+  --           insert_mode = true,
+  --         },
+  --         -- required for Windows users
+  --         use_absolute_path = true,
+  --       },
+  --     },
+  --   },
+  --   {
+  --     -- Make sure to set this up properly if you have lazy=true
+  --     'MeanderingProgrammer/render-markdown.nvim',
+  --     opts = {
+  --       file_types = { "markdown", "Avante" },
+  --     },
+  --     ft = { "markdown", "Avante" },
+  --     },
+  --   },
+  -- },
   -- ollama caller plugin
   {
   "nomnivore/ollama.nvim",
@@ -551,7 +633,7 @@ local plugin_specs = {
 
     ---@type Ollama.Config
     opts = {
-          model = "mistral",
+          model = "mixtral:8x7b",
           url = "http://127.0.0.1:11434",
           serve = {
             on_start = false,
