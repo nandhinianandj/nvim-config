@@ -633,7 +633,7 @@ local plugin_specs = {
 
     ---@type Ollama.Config
     opts = {
-          model = "mixtral:8x7b",
+          model = "granite-code:8b",
           url = "http://127.0.0.1:11434",
           serve = {
             on_start = false,
