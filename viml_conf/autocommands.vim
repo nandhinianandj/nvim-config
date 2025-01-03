@@ -5,6 +5,17 @@ augroup dynamic_smartcase
   autocmd CmdLineLeave : set smartcase
 augroup END
 
+augroup folds
+  au!
+  au InsertEnter * let w:oldfdm = &l:foldmethod | setlocal foldmethod=manual
+  au InsertLeave *
+        \ if exists('w:oldfdm') |
+        \   let &l:foldmethod = w:oldfdm |
+        \   unlet w:oldfdm |
+        \ endif |
+        \ normal! zv
+augroup END
+
 augroup term_settings
   autocmd!
   " Do not use number and relative number for terminal inside nvim
