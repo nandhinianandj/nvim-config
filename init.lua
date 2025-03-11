@@ -15,7 +15,7 @@ local version = vim.version
 
 -- check if we have the latest stable version of nvim
 
-local expected_ver_str = "0.10.1"
+local expected_ver_str = "0.10.1,0.11.0"
 local expect_ver = version.parse(expected_ver_str)
 local actual_ver = vim.version()
 
@@ -25,10 +25,11 @@ if expect_ver == nil then
   vim.api.nvim_err_writeln(msg)
   return
 end
+local actual_ver_str = string.format("%s.%s.%s", actual_ver.major, actual_ver.minor, actual_ver.patch)
+result = string.find(expected_ver_str,actual_ver_str)
+-- version.cmp(expect_ver, actual_ver)
 
-local result = version.cmp(expect_ver, actual_ver)
-
-if  result ~= 0 then
+if  result == nil then
   local _ver = string.format("%s.%s.%s", actual_ver.major, actual_ver.minor, actual_ver.patch)
   local msg = string.format("Expect nvim %s, but got %s instead. Use at your own risk!", expected_ver_str, _ver)
   vim.api.nvim_err_writeln(msg)
