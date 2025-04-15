@@ -209,7 +209,7 @@ local plugin_specs = {
       vim.o.foldcolumn = "1" -- '0' is not bad
       vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
       vim.o.foldlevelstart = 1 --- on start fold everything except first level folds
-      vim.o.foldenable = true
+      vim.o.foldenable =  false
     end,
     config = function()
       require("config.nvim_ufo")
