@@ -678,7 +678,6 @@ local plugin_specs = {
     ft = "lua", -- only load on lua files
     opts = {},
   },
-  { 'augmentcode/augment.vim' },
 }
 
 require("lazy").setup {
