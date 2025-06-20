@@ -55,6 +55,16 @@ if vim.g.is_win then
   vim.g.netrw_http_cmd = "curl --ssl-no-revoke -Lo"
 end
 
+-- backup and swap file directories
+
+vim.opt.backupdir = os.getenv("HOME") .. "/.nvim/vim_backups//"
+vim.opt.directory = os.getenv("HOME") .. "/.nvim/vim_swaps//"
+vim.opt.undodir   = os.getenv("HOME") .. "/.nvim/vim_undos//"
+vim.opt.backup = true
+vim.opt.writebackup = true
+vim.opt.swapfile = true
+vim.opt.undofile = true
+
 -- Do not load tohtml.vim
 vim.g.loaded_2html_plugin = 1
 
