@@ -76,7 +76,7 @@ M.rand_colorscheme = function()
   end
 
   -- Load the colorscheme and its settings
-  M.colorscheme_conf[colorscheme]()
+  M.colorscheme_conf["material"]()
 
   if vim.g.logging_level == "debug" then
     local msg = "Colorscheme: " .. colorscheme
