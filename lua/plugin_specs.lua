@@ -47,7 +47,7 @@ local plugin_specs = {
     event = { "BufRead", "BufNewFile" },
     config = function()
       require("config.lsp")
-    end,
+    end
   },
 
   {
@@ -60,8 +60,51 @@ local plugin_specs = {
     end,
     event = "VeryLazy",
     build = ":TSUpdate",
-    config = function()
-      require("config.treesitter")
+    config = function() 
+      -- Make sure nvim-treesitter is installed with your plugin manager:
+      -- lazy.nvim: { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' }
+      -- packer.nvim: use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+
+      require'nvim-treesitter.configs'.setup {
+      -- Parsers to install
+      ensure_installed = { "python", "lua", "javascript", "html", "css" }, 
+
+      -- Install parsers synchronously
+      sync_install = false,
+
+      -- Automatically install missing parsers
+      auto_install = true,
+      -- Enable highlighting
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+      },
+
+      -- Enable indentation
+      indent = {
+        enable = true,
+      },
+
+      -- Incremental selection
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<leader>ti",      -- start selection
+          node_incremental = "<leader>tn",    -- expand to next node
+          scope_incremental = "<leader>ts",   -- expand to scope
+          node_decremental = "<leader>tp",    -- shrink node
+      },
+      -- Playground for debugging treesitter
+      playground = {
+        enable = true,
+        updatetime = 25,
+      },
+    },
+
+    -- Extra keymaps for Treesitter features
+    vim.keymap.set('n', '<leader>th', ':TSHighlightCapturesUnderCursor<CR>', { noremap = true, silent = true }),
+    vim.keymap.set('n', '<leader>tt', ':TSPlaygroundToggle<CR>', { noremap = true, silent = true })
+  }
     end,
   },
 
