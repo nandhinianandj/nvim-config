@@ -50,6 +50,7 @@ local plugin_specs = {
     end
   },
 
+  -- nvim-treesitter
   {
     "nvim-treesitter/nvim-treesitter",
     enabled = function()
@@ -107,7 +108,19 @@ local plugin_specs = {
   }
     end,
   },
-
+  
+  -- nvim Tree
+  {
+  "nvim-tree/nvim-tree.lua",
+  version = "*",
+  lazy = false,
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+  },
+  config = function()
+    require("nvim-tree").setup {}
+  end,
+},
   -- Python indent (follows the PEP8 style)
   { "Vimjas/vim-python-pep8-indent", ft = { "python" } },
 

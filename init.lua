@@ -12,9 +12,7 @@
 -- one-liner: auto-detect Python & set python3_host_prog
 -- vim.g.python3_host_prog = (function() local p = vim.fn.exepath('python3') if p=='' then p = vim.fn.exepath('python') end if p=='' then local ok,f = pcall(io.popen, 'python3 -3 -c "import sys;print(sys.executable)" 2>nul') if ok and f then local s = f:read('*l') f:close() if s and s~='' then p = s end end end if p~= '' then vim.notify('python3_host_prog set → '..p) return p else vim.notify('Python3 not found — set vim.g.python3_host_prog manually', vim.log.levels.WARN) return '' end end)()
 
--- vim.g.loaded_python3_provider = 0
 vim.g.python3_host_prog = "C:/Program Files/Python312/python.exe"
--- vim.g.python3_host_prog = "C:/Users/anand/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0"
 vim.loader.enable()
 
 local version = vim.version
