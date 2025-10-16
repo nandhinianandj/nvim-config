@@ -14,6 +14,7 @@ RUN apk add --no-cache py3-pynvim
 RUN mkdir -p /root/.config \
     && git clone https://github.com/nandhinianandj/nvim-config /root/.config/nvim
 
+COPY apiKeys.sh /root/.config/nvim/apiKeys.sh
 # Ensure bash sources the apiKeys.sh if present
 RUN echo '[ -f /root/.config/nvim/apiKeys.sh ] && . /root/.config/nvim/apiKeys.sh' >> /root/.bashrc
 
