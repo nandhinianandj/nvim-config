@@ -9,10 +9,13 @@
 -- Blog: https://jdhao.github.io/
 -- GitHub: https://github.com/jdhao
 -- StackOverflow: https://stackoverflow.com/users/6064933/jdhao
+-- one-liner: auto-detect Python & set python3_host_prog
+-- vim.g.python3_host_prog = (function() local p = vim.fn.exepath('python3') if p=='' then p = vim.fn.exepath('python') end if p=='' then local ok,f = pcall(io.popen, 'python3 -3 -c "import sys;print(sys.executable)" 2>nul') if ok and f then local s = f:read('*l') f:close() if s and s~='' then p = s end end end if p~= '' then vim.notify('python3_host_prog set → '..p) return p else vim.notify('Python3 not found — set vim.g.python3_host_prog manually', vim.log.levels.WARN) return '' end end)()
+
+vim.g.python3_host_prog = "C:/Program Files/Python312/python.exe"
 vim.loader.enable()
 
 local version = vim.version
-
 -- check if we have the latest stable version of nvim
 
 -- local expected_ver_str = "0.10.1,0.11.0"
